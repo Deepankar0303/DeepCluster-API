@@ -1,0 +1,30 @@
+kind: DeepCluster
+metadata:
+  name:  edge1-Bangalore
+spec:
+  provider:
+    name: maas
+    location: zone1
+  clusterSpec:
+    clusterVersion: "v1.19.13"
+  providerClusterSpec:
+    maas:
+      dnsDomain: maas
+      failureDomains:
+      - zone1-Bangalore
+  controlPlance:
+    os: ubuntu
+    replicas: 1
+    providerMachineSpec:
+      maas: 
+        minCPU: 8
+        minMemory: 8
+  worker:
+    os: ubuntu
+    replicas: 1
+    providerMachineSpec: 
+      maas: 
+        failureDomain: zone1-Bangalore
+        minCPU: 8
+        minMemory: 8
+
